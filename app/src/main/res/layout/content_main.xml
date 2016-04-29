@@ -7,7 +7,7 @@
     <com.hyj.administrator.funmarket.ui.view.PagerTab
         android:id="@+id/pager_tab"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:background="@drawable/bg_tab" />
 
     <android.support.v4.view.ViewPager

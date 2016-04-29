@@ -1,5 +1,6 @@
 package com.hyj.administrator.funmarket.ui.fragment;
 
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ListView;
 
@@ -36,7 +37,7 @@ public class HomeFragment extends BaseFragment {
 // 请求网络
         mData = new ArrayList();
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 20; i++) {
             mData.add("测试：" + i);
         }
 
@@ -54,6 +55,18 @@ public class HomeFragment extends BaseFragment {
         public MyBaseHolder getHolder() {
             return new HomeHolder();
         }
+
+        @Override
+        public ArrayList onLoadMore() {
+
+            ArrayList<String> moreData = new ArrayList();
+            for (int i = 0; i < 20; i++) {
+                moreData.add("测试加载更多数据：" + i);
+            }
+            SystemClock.sleep(3000);
+            return moreData;
+        }
+
 
         //对ListView进行第一次封装：MyBaseAdapter 泛型getCount() getItem(int position) getItemId(int position)
 //        @Override

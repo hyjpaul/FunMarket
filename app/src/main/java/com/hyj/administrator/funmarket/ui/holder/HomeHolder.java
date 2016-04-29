@@ -12,6 +12,7 @@ import com.hyj.administrator.funmarket.uiutils.UiUtil;
 public class HomeHolder extends MyBaseHolder<String> {
 
     private TextView tvContent;
+
     @Override
     public View initView() {
         // 1. 加载布局
