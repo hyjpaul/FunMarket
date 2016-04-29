@@ -116,7 +116,7 @@ public abstract class LoadPage extends FrameLayout {
                     final ResultState resultState = onLoad();
 
                     // 运行在主线程
-                    UiUtil.getHandler().post(new Runnable() {
+                    UiUtil.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             if (resultState != null) {
