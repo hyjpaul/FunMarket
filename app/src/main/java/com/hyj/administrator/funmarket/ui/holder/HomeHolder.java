@@ -4,12 +4,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hyj.administrator.funmarket.R;
+import com.hyj.administrator.funmarket.domain.AppInfo;
 import com.hyj.administrator.funmarket.uiutils.UiUtil;
 
 /**
  * 首页holder
  */
-public class HomeHolder extends MyBaseHolder<String> {
+public class HomeHolder extends MyBaseHolder<AppInfo> {
 
     private TextView tvContent;
 
@@ -23,7 +24,7 @@ public class HomeHolder extends MyBaseHolder<String> {
     }
 
     @Override
-    protected void refreshView(String data) {
-        tvContent.setText(data);
+    protected void refreshView(AppInfo data) {
+        tvContent.setText(data.name);
     }
 }

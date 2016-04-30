@@ -1,9 +1,10 @@
 package com.hyj.administrator.funmarket.ui.fragment;
 
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.ListView;
 
+import com.hyj.administrator.funmarket.domain.AppInfo;
+import com.hyj.administrator.funmarket.http.protocol.HomeProtocol;
 import com.hyj.administrator.funmarket.ui.adapter.MyBaseAdapter;
 import com.hyj.administrator.funmarket.ui.holder.HomeHolder;
 import com.hyj.administrator.funmarket.ui.holder.MyBaseHolder;
@@ -17,7 +18,8 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends BaseFragment {
 
-    private ArrayList mData;
+    // private ArrayList<String> data;
+    private ArrayList<AppInfo> mData;// 加载第一页数据
 
     // 如果加载数据成功, 就回调此方法, 在主线程运行
     @Override
@@ -35,19 +37,21 @@ public class HomeFragment extends BaseFragment {
     @Override
     public LoadPage.ResultState onLoad() {
 // 请求网络
-        mData = new ArrayList();
+//        mData = new ArrayList();
+//
+//        for (int i = 0; i < 20; i++) {
+//            mData.add("测试：" + i);
+//        }
 
-        for (int i = 0; i < 20; i++) {
-            mData.add("测试：" + i);
-        }
+        HomeProtocol homeProtocol = new HomeProtocol();
+        mData = homeProtocol.getData(0);// 加载第一页数据
 
-
-        return LoadPage.ResultState.STATE_SUCCESS;
+        return check(mData);// 校验数据并返回
     }
 
     //ListView适配器
     private class MyAdapter extends MyBaseAdapter {
-        public MyAdapter(ArrayList data) {
+        public MyAdapter(ArrayList<AppInfo> data) {
             super(data);
         }
 
@@ -56,14 +60,20 @@ public class HomeFragment extends BaseFragment {
             return new HomeHolder();
         }
 
+        // 此方法在子线程调用
         @Override
-        public ArrayList onLoadMore() {
+        public ArrayList<AppInfo> onLoadMore() {
 
-            ArrayList<String> moreData = new ArrayList();
-            for (int i = 0; i < 20; i++) {
-                moreData.add("测试加载更多数据：" + i);
-            }
-            SystemClock.sleep(3000);
+//            ArrayList<String> moreData = new ArrayList();
+//            for (int i = 0; i < 20; i++) {
+//                moreData.add("测试加载更多数据：" + i);
+//            }
+//            SystemClock.sleep(3000);
+
+            HomeProtocol protocol = new HomeProtocol();
+            // 20, 40, 60....
+            // 下一页数据的位置 等于 当前集合大小
+            ArrayList<AppInfo> moreData  = protocol.getData(getListSize());//在MyBaseAdapter得到包括加载更多的数据
             return moreData;
         }
 

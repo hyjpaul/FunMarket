@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.hyj.administrator.funmarket.ui.view.LoadPage;
 import com.hyj.administrator.funmarket.uiutils.UiUtil;
 
+import java.util.ArrayList;
+
 /**
  * Fragment的一个基类，共性
  */
@@ -50,5 +52,22 @@ public abstract class BaseFragment extends Fragment {
         if (mLoadPage != null) {
             mLoadPage.loadData();
         }
+    }
+
+    // 对网络返回数据的合法性进行校验
+    public LoadPage.ResultState check(Object obj) {
+        if (obj != null) {
+            if (obj instanceof ArrayList) {// 判断是否是集合
+                ArrayList list = (ArrayList) obj;
+
+                if (list.isEmpty()) {
+                    return LoadPage.ResultState.STATE_EMPTY;
+                } else {
+                    return LoadPage.ResultState.STATE_SUCCESS;
+                }
+            }
+
+        }
+        return LoadPage.ResultState.STATE_ERROR;
     }
 }

@@ -21,7 +21,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
     private static final int TYPE_MORE = 1;// 加载更多类型
 
 
-    private ArrayList<T> mData;
+    private ArrayList<T> mData;//开始是第一页数据，后面会addAll加载更多的数据
 
     public MyBaseAdapter(ArrayList<T> data) {
         mData = data;
@@ -159,6 +159,11 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     // 具体去加载更多数据, 必须由子类实现
     public abstract ArrayList<T> onLoadMore();
+
+    //获取当前集合大小
+    public int getListSize() {
+        return mData.size();
+    }
 
 
 }
