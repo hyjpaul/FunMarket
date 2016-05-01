@@ -37,7 +37,7 @@ public abstract class BaseProtocol<T> {
 
     }
 
-    // 从网络获取数据
+    // 从网络获取数据   用别人写好的专门获取MyWebServer服务器数据的HttpHelper
     private String getDataFromServer(int index) {
 // http://www.itheima.com/home?index=0&name=zhangsan&age=18    // index表示的是从哪个位置开始返回20条数据, 用于分页,服务器链接不变根据index的不用返回不用位置开始的数据
 

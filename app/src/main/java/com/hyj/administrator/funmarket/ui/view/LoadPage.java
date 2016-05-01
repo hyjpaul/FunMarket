@@ -3,6 +3,7 @@ package com.hyj.administrator.funmarket.ui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.hyj.administrator.funmarket.R;
@@ -55,6 +56,14 @@ public abstract class LoadPage extends FrameLayout {
         // 初始化加载失败布局
         if (mErrorPage == null) {
             mErrorPage = UiUtil.inflateView(R.layout.page_error);
+
+            Button btnRetry = (Button) mErrorPage.findViewById(R.id.btn_retry);
+            btnRetry.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadData();
+                }
+            });
 
             addView(mErrorPage);
         }

@@ -1,7 +1,6 @@
 package com.hyj.administrator.funmarket.ui.fragment;
 
 import android.view.View;
-import android.widget.ListView;
 
 import com.hyj.administrator.funmarket.domain.AppInfo;
 import com.hyj.administrator.funmarket.http.protocol.HomeProtocol;
@@ -9,6 +8,7 @@ import com.hyj.administrator.funmarket.ui.adapter.MyBaseAdapter;
 import com.hyj.administrator.funmarket.ui.holder.HomeHolder;
 import com.hyj.administrator.funmarket.ui.holder.MyBaseHolder;
 import com.hyj.administrator.funmarket.ui.view.LoadPage;
+import com.hyj.administrator.funmarket.ui.view.MyListView;
 import com.hyj.administrator.funmarket.uiutils.UiUtil;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class HomeFragment extends BaseFragment {
 //        TextView view = new TextView(UiUtil.getContext());
 //        view.setText(getClass().getSimpleName());
 
-        ListView view = new ListView(UiUtil.getContext());
+        MyListView view = new MyListView(UiUtil.getContext());
 
         view.setAdapter(new MyAdapter(mData));
         return view;
@@ -73,7 +73,7 @@ public class HomeFragment extends BaseFragment {
             HomeProtocol protocol = new HomeProtocol();
             // 20, 40, 60....
             // 下一页数据的位置 等于 当前集合大小
-            ArrayList<AppInfo> moreData  = protocol.getData(getListSize());//在MyBaseAdapter得到包括加载更多的数据
+            ArrayList<AppInfo> moreData = protocol.getData(getListSize());//在MyBaseAdapter得到包括加载更多的数据
             return moreData;
         }
 

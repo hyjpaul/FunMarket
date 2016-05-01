@@ -14,9 +14,9 @@ import com.hyj.administrator.funmarket.uiutils.UiUtil;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
- * 首页holder
+ * 游戏holder
  */
-public class HomeHolder extends MyBaseHolder<AppInfo> {
+public class GameHolder extends MyBaseHolder<AppInfo> {
 
     private TextView tvName, tvSize, tvDes;
     private ImageView ivIcon;
