@@ -1,7 +1,7 @@
 package com.hyj.administrator.funmarket.domain;
 
 /**
- * 首页应用信息封装
+ * 首页、应用、游戏，信息封装
  */
 public class AppInfo {
 

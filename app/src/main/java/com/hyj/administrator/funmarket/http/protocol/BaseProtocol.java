@@ -46,7 +46,7 @@ public abstract class BaseProtocol<T> {
 
         if (httpResult != null) {
             String result = httpResult.getString();
-            System.out.println("访问结果:" + result);
+           // System.out.println("访问结果:" + result);
             // 写缓存
             if (!StringUtils.isEmpty(result)) {
                 setCache(index, result);
