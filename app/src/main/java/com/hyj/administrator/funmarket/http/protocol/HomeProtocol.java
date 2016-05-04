@@ -52,7 +52,7 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
             // 初始化轮播条的数据
             JSONArray jaPic = joResult.getJSONArray("picture");
 
-            ArrayList<String> pictures = new ArrayList<String>();
+            pictures = new ArrayList<String>();
             for (int i = 0; i < jaPic.length(); i++) {
                 String pic = jaPic.getString(i);
                 pictures.add(pic);
@@ -64,5 +64,11 @@ public class HomeProtocol extends BaseProtocol<ArrayList<AppInfo>> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private ArrayList<String> pictures;
+
+    public ArrayList<String> getPictureList() {
+        return pictures;
     }
 }

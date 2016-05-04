@@ -5,6 +5,7 @@ import android.view.View;
 import com.hyj.administrator.funmarket.domain.AppInfo;
 import com.hyj.administrator.funmarket.http.protocol.HomeProtocol;
 import com.hyj.administrator.funmarket.ui.adapter.MyBaseAdapter;
+import com.hyj.administrator.funmarket.ui.holder.HomeHeaderHolder;
 import com.hyj.administrator.funmarket.ui.holder.HomeHolder;
 import com.hyj.administrator.funmarket.ui.holder.MyBaseHolder;
 import com.hyj.administrator.funmarket.ui.view.LoadPage;
@@ -21,6 +22,10 @@ public class HomeFragment extends BaseFragment {
     // private ArrayList<String> data;
     private ArrayList<AppInfo> mData;// 加载第一页数据
 
+    // 轮播条数据
+    private ArrayList<String> mPictureList;
+
+
     // 如果加载数据成功, 就回调此方法, 在主线程运行
     @Override
     public View onCreateSuccessView() {
@@ -29,7 +34,15 @@ public class HomeFragment extends BaseFragment {
 
         MyListView view = new MyListView(UiUtil.getContext());
 
+        // 给listview增加头布局展示轮播条
+        HomeHeaderHolder header = new HomeHeaderHolder();
+        view.addHeaderView(header.getRootView());// 先添加头布局,再setAdapter
         view.setAdapter(new MyAdapter(mData));
+
+        if (mPictureList != null) {
+            // 设置轮播条数据
+            header.setData(mPictureList);
+        }
         return view;
     }
 
@@ -46,6 +59,8 @@ public class HomeFragment extends BaseFragment {
         HomeProtocol homeProtocol = new HomeProtocol();
         mData = homeProtocol.getData(0);// 加载第一页数据
 
+        mPictureList = homeProtocol.getPictureList();
+
         return check(mData);// 校验数据并返回
     }
 
@@ -56,7 +71,7 @@ public class HomeFragment extends BaseFragment {
         }
 
         @Override
-        public MyBaseHolder getHolder() {
+        public MyBaseHolder getHolder(int posotion) {
             return new HomeHolder();
         }
 

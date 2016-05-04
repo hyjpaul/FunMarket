@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     //注意: 此处必须要从0开始写,因为值是要传给getItemViewType(int position)这方法底层是从0开始的数组
-    private static final int TYPE_NORMAL = 0;// 正常布局类型
-    private static final int TYPE_MORE = 1;// 加载更多类型
+    private static final int TYPE_NORMAL = 1;// 正常布局类型
+    private static final int TYPE_MORE = 0;// 加载更多类型
 
 
     private ArrayList<T> mData;//开始是第一页数据，后面会addAll加载更多的数据
@@ -40,13 +40,13 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         if (position == getCount() - 1) {// 最后一个
             return TYPE_MORE;//确定的：最后就是加载更多的布局
         } else {
-            return getInnerType();//布局不确定，子类可重写
+            return getInnerType(position);//布局不确定，子类可重写
         }
 
     }
 
     // 子类可以重写此方法来更改返回的布局类型
-    public int getInnerType() {
+    public int getInnerType(int position) {
         return TYPE_NORMAL;// 默认就是普通类型
     }
 
@@ -77,7 +77,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
                 holder = new MoreHolder(hasMore());
             } else {
 
-                holder = getHolder();// 子类返回具体holder对象
+                holder = getHolder(position);// 子类返回具体holder对象
             }
         } else {
             holder = (MyBaseHolder) convertView.getTag();
@@ -104,7 +104,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
 
     // 返回当前页面的holder对象, 必须子类实现
-    public abstract MyBaseHolder<T> getHolder();
+    public abstract MyBaseHolder<T> getHolder(int position);
 
     // 子类可以重写此方法来决定是否可以加载更多
     public boolean hasMore() {
