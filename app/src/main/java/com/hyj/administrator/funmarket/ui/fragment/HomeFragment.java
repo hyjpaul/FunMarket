@@ -1,9 +1,12 @@
 package com.hyj.administrator.funmarket.ui.fragment;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.hyj.administrator.funmarket.domain.AppInfo;
 import com.hyj.administrator.funmarket.http.protocol.HomeProtocol;
+import com.hyj.administrator.funmarket.ui.activity.HomeDetailActivity;
 import com.hyj.administrator.funmarket.ui.adapter.MyBaseAdapter;
 import com.hyj.administrator.funmarket.ui.holder.HomeHeaderHolder;
 import com.hyj.administrator.funmarket.ui.holder.HomeHolder;
@@ -43,6 +46,19 @@ public class HomeFragment extends BaseFragment {
             // 设置轮播条数据
             header.setData(mPictureList);
         }
+
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppInfo appInfo = mData.get(position - 1);// 去掉头布局
+
+                if (appInfo != null) {
+                    Intent intent = new Intent(UiUtil.getContext(), HomeDetailActivity.class);
+                    intent.putExtra("packageName", appInfo.packageName);
+                    startActivity(intent);
+                }
+            }
+        });
         return view;
     }
 
