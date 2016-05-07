@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 
 import com.hyj.administrator.funmarket.R;
 import com.hyj.administrator.funmarket.domain.AppInfo;
 import com.hyj.administrator.funmarket.http.protocol.HomeDetailProtocol;
 import com.hyj.administrator.funmarket.ui.holder.DetailAppInfoHolder;
+import com.hyj.administrator.funmarket.ui.holder.DetailDesHolder;
+import com.hyj.administrator.funmarket.ui.holder.DetailPicsHolder;
 import com.hyj.administrator.funmarket.ui.holder.DetailSafeHolder;
 import com.hyj.administrator.funmarket.ui.view.LoadPage;
 import com.hyj.administrator.funmarket.uiutils.UiUtil;
@@ -63,6 +66,22 @@ public class HomeDetailActivity extends BaseActivity {
         DetailSafeHolder safeHolder = new DetailSafeHolder();
         flDetailSafe.addView(safeHolder.getRootView());
         safeHolder.setData(mData);
+
+        // 初始化截图模块
+        HorizontalScrollView hsvPic = (HorizontalScrollView) view
+                .findViewById(R.id.hsv_detail_pics);
+        DetailPicsHolder picsHolder = new DetailPicsHolder();
+        hsvPic.addView(picsHolder.getRootView());
+        picsHolder.setData(mData);
+
+        //初始化描述模块
+        FrameLayout flDetailDes = (FrameLayout) view
+                .findViewById(R.id.fl_detail_des);
+        DetailDesHolder desHolder = new DetailDesHolder();
+        flDetailDes.addView(desHolder.getRootView());
+        desHolder.setData(mData);
+
+        // getIntent().getSerializableExtra("list");如果要点击截图放大
 
         return view;
     }
