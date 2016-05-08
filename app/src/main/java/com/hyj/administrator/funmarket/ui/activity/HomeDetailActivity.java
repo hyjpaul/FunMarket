@@ -2,6 +2,7 @@ package com.hyj.administrator.funmarket.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -28,6 +29,10 @@ public class HomeDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //设置toolbar返回键
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mLoadPage = new LoadPage(this) {
             @Override
@@ -96,5 +101,15 @@ public class HomeDetailActivity extends BaseActivity {
         } else {
             return LoadPage.ResultState.STATE_ERROR;
         }
+    }
+
+    //点击ToolBar返回
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
