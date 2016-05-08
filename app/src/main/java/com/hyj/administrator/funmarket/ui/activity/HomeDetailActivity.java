@@ -12,6 +12,7 @@ import com.hyj.administrator.funmarket.domain.AppInfo;
 import com.hyj.administrator.funmarket.http.protocol.HomeDetailProtocol;
 import com.hyj.administrator.funmarket.ui.holder.DetailAppInfoHolder;
 import com.hyj.administrator.funmarket.ui.holder.DetailDesHolder;
+import com.hyj.administrator.funmarket.ui.holder.DetailDownloadHolder;
 import com.hyj.administrator.funmarket.ui.holder.DetailPicsHolder;
 import com.hyj.administrator.funmarket.ui.holder.DetailSafeHolder;
 import com.hyj.administrator.funmarket.ui.view.LoadPage;
@@ -87,6 +88,13 @@ public class HomeDetailActivity extends BaseActivity {
         desHolder.setData(mData);
 
         // getIntent().getSerializableExtra("list");如果要点击截图放大
+
+        // 初始化下载模块
+        FrameLayout flDetailDownload = (FrameLayout) view
+                .findViewById(R.id.fl_detail_download);
+        DetailDownloadHolder downloadHolder = new DetailDownloadHolder();
+        flDetailDownload.addView(downloadHolder.getRootView());
+        downloadHolder.setData(mData);
 
         return view;
     }

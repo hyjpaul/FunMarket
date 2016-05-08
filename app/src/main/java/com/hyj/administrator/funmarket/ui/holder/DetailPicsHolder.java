@@ -32,6 +32,17 @@ public class DetailPicsHolder extends MyBaseHolder<AppInfo> {
 
         mBitmapUtils = BitmapHelper.getBitmapUtils();
 
+        //				ivPics[i].setOnClickListener(new OnClickListener() {
+//
+//					@Override
+//					public void onClick(View v) {
+//						//跳转activity, activity展示viewpager
+//						//将集合通过intent传递过去, 当前点击的位置i也可以传过去
+//						Intent intent = new Intent();
+//						intent.putExtra("list", screen);
+//					}
+//				});
+
         return view;
     }
 
