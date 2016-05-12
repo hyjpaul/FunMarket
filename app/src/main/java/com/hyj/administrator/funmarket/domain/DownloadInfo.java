@@ -8,9 +8,9 @@ import java.io.File;
 
 /**
  * 下载应用对象
- * <p>
+ * <p/>
  * 注意: 一定要有读写sdcard的权限!!!!
- * <p>
+ * <p/>
  * <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
  * <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
  */
@@ -25,7 +25,7 @@ public class DownloadInfo {
     public int currentState;// 当前下载状态
     public String path;// 下载到本地文件的路径
 
-    public static final String GOOGLE_MARKET = "GOOGLE_MARKET";// sdcard根目录文件夹名称
+    public static final String FUN_MARKET = "FUN_MARKET";// sdcard根目录文件夹名称
     public static final String DONWLOAD = "download";// 子文件夹名称, 存放下载的文件
 
     // 获取下载进度(0-1)
@@ -45,13 +45,13 @@ public class DownloadInfo {
 
         sb.append(sdcardPath);
         sb.append(File.separator);// sb.append("/");
-        sb.append(GOOGLE_MARKET);
+        sb.append(FUN_MARKET);
         sb.append(File.separator);
         sb.append(DONWLOAD);
 
         if (createDir(sb.toString())) {
             // 文件夹存在或者已经创建完成
-            return sb.toString() + sb.append(File.separator) + name + ".apk";// 返回文件路径
+            return sb.toString() + File.separator + name + ".apk";// 返回文件路径
         }
 
         return null;
@@ -63,7 +63,7 @@ public class DownloadInfo {
 
         // 文件夹不存在或者不是一个文件夹
         if (!dirFile.exists() || !dirFile.isDirectory()) {
-            return dirFile.mkdir();
+            return dirFile.mkdirs();
         }
 
         return true;// 文件夹存在
